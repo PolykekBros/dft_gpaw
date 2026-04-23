@@ -3,6 +3,7 @@ from ase.optimize import BFGS
 from ase.filters import FrechetCellFilter
 from gpaw import GPAW, PW, FermiDirac
 from ase.io import read
+import matplotlib.pyplot as plt
 import numpy as np
 
 OUTDIR = "out/"
@@ -94,6 +95,19 @@ def struct_analyze(atoms):
     print(f"alpha = {cell_info[3]}, beta = {cell_info[4]}, gamma = {cell_info[5]}")
 
 
+def plotter(plt_data):
+    data = np.loadtxt(plt_data)
+    x = data[:, 0]
+    y = data[:, 1]
+
+    plt.plot(x, y)
+    plt.xlabel("X Axis")
+    plt.ylabel("Y Axis")
+    plt.title("Imported data plot")
+
+    plt.show()
+
+
 # Основной блок выполнения
 if __name__ == "__main__":
     opt_traj_nio = f"{OUTDIR}opt_nio.traj"
@@ -110,3 +124,9 @@ if __name__ == "__main__":
         gaps.append([u, gap])
 
     print(gaps)
+    with open("bands_gpaw.txt", "w") as f:
+        for row in gaps:
+            line = " ".join(map(str, row))
+            f.write(line + "\n")
+
+    plotter("bands_gpaw.txt")
