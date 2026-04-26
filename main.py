@@ -34,7 +34,7 @@ def afm_nio_init():
 
 
 def hypercell_init(s, primitive_atoms):
-    hc_atoms = primitive_atoms * (s, s, s)
+    hc_atoms = primitive_atoms * (s, s, 1)
     print("Гиперячейка создана!")
 
     cell_info = hc_atoms.cell.cellpar()
