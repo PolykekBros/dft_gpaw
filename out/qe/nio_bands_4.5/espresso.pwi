@@ -1,0 +1,50 @@
+&CONTROL
+   calculation      = 'scf'
+   pseudo_dir       = '/Users/kirill/Documents/dft/pot/'
+/
+&SYSTEM
+   nbnd             = 40
+   tot_magnetization = 0.0
+   ecutwfc          = 55
+   ecutrho          = 550
+   nspin            = 2
+   starting_magnetization(1) = 2.0
+   starting_magnetization(2) = 0.0
+   starting_magnetization(3) = -2.0
+   ntyp             = 3
+   nat              = 4
+   ibrav            = 0
+/
+&ELECTRONS
+   conv_thr         = 1e-08
+/
+&IONS
+/
+&CELL
+/
+&FCP
+/
+&RISM
+/
+ATOMIC_SPECIES
+Ni  58.6934 Ni.pbesol-n-rrkjus_psl.0.1.UPF
+O  15.999 O.pbesol-n-rrkjus_psl.1.0.0.UPF
+Ni1 58.6934 Ni.pbesol-n-rrkjus_psl.0.1.UPF
+
+K_POINTS automatic
+4 4 4  0 0 0
+
+CELL_PARAMETERS angstrom
+0.00002656761456 2.06353534737435 2.06353728831234
+2.06353534737439 0.00002656761457 2.06353728831234
+4.12393953800605 4.12393953800598 0.00318430465808
+
+ATOMIC_POSITIONS angstrom
+Ni  -0.0000000000 0.0000000000 -0.0000000000  
+O  2.0627392744 -0.0007695054 0.0007960762  
+Ni1 2.0619697690 2.0619697690 0.0015921523  
+O  4.1247090434 2.0612002636 0.0023882285  
+
+HUBBARD (ortho-atomic)
+U Ni-3d 4.5
+U Ni1-3d 4.5
