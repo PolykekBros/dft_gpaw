@@ -10,7 +10,7 @@ import numpy as np
 import os
 
 OUTDIR = "out/"
-PSEUDODIR = "/Users/kirill/Documents/dft/pot/"
+PSEUDODIR = "./pot/"
 QEDIR = "/Users/kirill/Desktop/src/q-e-qe-7.5/bin/pw.x"
 
 
@@ -205,27 +205,27 @@ if __name__ == "__main__":
         nio_structure, f"{OUTDIR}optimization.txt", opt_traj_nio
     )
     struct_analyze(optimized_nio)
-    nio_hypercell = hypercell_init(2, nio_structure)
+    nio_hypercell = hypercell_init(2, optimized_nio)
 
-    # qe_gaps = []
-    # for u in np.arange(3.0, 8.1, 0.5):
-    #     print(f"Calculating band gap for u = {u}")
-    #     qe_gap = calculate_band_gap_qe(optimized_nio, u, f"{OUTDIR}qe/nio_bands_{u}")
-    #     qe_gaps.append([u, qe_gap])
+    qe_gaps = []
+    for u in np.arange(3.0, 8.1, 0.5):
+        print(f"Calculating band gap for u = {u}")
+        qe_gap = calculate_band_gap_qe(nio_hypercell, u, f"{OUTDIR}qe/nio_bands_{u}")
+        qe_gaps.append([u, qe_gap])
 
-    # print(qe_gaps)
-    # with open("bands_qe.txt", "w") as f:
-    #     for row in qe_gaps:
-    #         line = " ".join(map(str, row))
-    #         f.write(line + "\n")
+    print(qe_gaps)
+    with open("bands_qe.txt", "w") as f:
+        for row in qe_gaps:
+            line = " ".join(map(str, row))
+            f.write(line + "\n")
 
-    # plotter(
-    #     "bands_qe.txt",
-    #     "QE band gap VS Habbard U",
-    #     "Habbard U, eV",
-    #     "Band gap, eV",
-    #     "bands_qe.png",
-    # )
+    plotter(
+        "bands_qe.txt",
+        "QE band gap VS Habbard U",
+        "Habbard U, eV",
+        "Band gap, eV",
+        "bands_qe.png",
+    )
 
     gaps = []
     for u in np.arange(3.0, 8.1, 0.5):
