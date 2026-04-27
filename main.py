@@ -10,7 +10,7 @@ import numpy as np
 import os
 
 OUTDIR = "out/"
-PSEUDODIR = "./pot/"
+PSEUDODIR = f"{os.getcwd()}/pot/"
 QEDIR = "/Users/kirill/Desktop/src/q-e-qe-7.5/bin/pw.x"
 
 
@@ -112,7 +112,7 @@ def calculate_band_gap_qe(atoms, u, output_qe):
         "system": {
             "ecutwfc": 55,
             "ecutrho": 550,
-            "nbnd": 40,
+            "nbnd": 160,
             "tot_magnetization": 0.0,
         },
         "electrons": {
